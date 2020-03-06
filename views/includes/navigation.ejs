@@ -27,6 +27,7 @@
           >Orders</a
         >
       </li>
+      <% if (isAdmin) { %>
       <li class="main-header__item">
         <a
           class="<%= path === '/admin/add-product' ? 'active' : '' %>"
@@ -41,7 +42,7 @@
           >Admin Products
         </a>
       </li>
-      <% } %>
+      <% } %> <% } %>
     </ul>
     <ul class="main-header__item-list">
       <% if (!isAuthenticated) { %>

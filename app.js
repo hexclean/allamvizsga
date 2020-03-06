@@ -70,12 +70,12 @@ app.use(flash());
 
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.isAdmin = req.session.isAdmin;
   res.locals.csrfToken = req.csrfToken();
   next();
 });
 
 app.use((req, res, next) => {
-  // throw new Error('Sync Dummy');
   if (!req.session.user) {
     return next();
   }
@@ -107,7 +107,8 @@ app.use((error, req, res, next) => {
   res.status(500).render("500", {
     pageTitle: "Error!",
     path: "/500",
-    isAuthenticated: req.session.isLoggedIn
+    isAuthenticated: req.session.isLoggedIn,
+    isAdmin: req.session.isLoggedIn
   });
 });
 
